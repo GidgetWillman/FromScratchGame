@@ -67,7 +67,7 @@ int main(int, char**)
         glfwSwapBuffers(window);
     }
 
-    std::cout << "Thanks for playing!!!" << std::endl;
+    std::cout << "Thanks for playing!!!!" << std::endl;
     glfwTerminate();
     return 0;
 }
