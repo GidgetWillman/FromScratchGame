@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/mikew/Documents/GameEngine/build",
+  "command": "/usr/bin/cc  -I/home/mikew/Documents/GameEngine/include -g -o CMakeFiles/BumblyBingusEngine.dir/src/glad.c.o -c /home/mikew/Documents/GameEngine/src/glad.c",
+  "file": "/home/mikew/Documents/GameEngine/src/glad.c",
+  "output": "CMakeFiles/BumblyBingusEngine.dir/src/glad.c.o"
+},
+{
+  "directory": "/home/mikew/Documents/GameEngine/build",
+  "command": "/usr/bin/c++  -I/home/mikew/Documents/GameEngine/include -g -o CMakeFiles/BumblyBingusEngine.dir/src/main.cpp.o -c /home/mikew/Documents/GameEngine/src/main.cpp",
+  "file": "/home/mikew/Documents/GameEngine/src/main.cpp",
+  "output": "CMakeFiles/BumblyBingusEngine.dir/src/main.cpp.o"
+}
+]
