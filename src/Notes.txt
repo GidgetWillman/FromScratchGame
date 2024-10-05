@@ -38,3 +38,31 @@ vt lines are texture coordinates
 s lines indicate smooth shading
 f lines indicate face indices by vertex/texture/normal
 (v1/vt1/vn1 v2/vt2/vn2 v3/vt3/vn3)
+
+vecn - floats
+bvecn - bools
+ivecn - integers
+uvecn - unsigned integers
+dvecn - doubles
+
+vectors are accessed by .x .y .z .w
+can also acces by .r .g .b .a (color)
+or by .s .t .p .q (texture coordinates)
+
+swizzling: 
+vec2 someVec;
+vec4 differentVec = someVec.xyxx;
+vec3 anotherVec = differentVec.zyw;
+vec4 otherVec = someVec.xxxx + anotherVec.yxzy;
+use any combination of letters to make a new vector of those components
+
+shaders specify inputs and outputs
+vertex shader almost always needs layout (location = X) in vec3 aPos;
+fragment shader always needs out vec4 FragColor
+
+shaders go vertex -> fragment (geometry in between but we're not worried about that right now)
+
+uniform variables are global and can be accessed anywhere
+they will remain until reset or updated
+
+Rein'a is stinky
