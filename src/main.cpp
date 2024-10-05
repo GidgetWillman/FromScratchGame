@@ -39,9 +39,26 @@ int main(int, char**)
     
     glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
 
-    //NOTE: Everything below this line is tutorial data that doesn't need to be in the final product
+    //NOTE: Everything below this line is tutorial data that may not need to be in the final product
+    float vertices[] = { //triangle vertex description in xyz, note that we can cleanly format the data if we so please
+        -0.5f, -0.5f, 0.0f, //bottom left
+         0.5f, -0.5f, 0.0f, //bottom right
+         0.0f,  0.5f, 0.0f  //top
+    }; //DON'T FORGET THE SEMICOLON YOU MORON
 
-    //NOTE: Everything above this line is tutorial data that doesn't need to be in the final product
+    unsigned int VBO; //vertex buffer object, which is a GL_ARRAY_BUFFER
+    glGenBuffers(1, &VBO); //generate a buffer ID
+    glBindBuffer(GL_ARRAY_BUFFER, VBO); //bind VBO to GL_ARRAY_BUFFER, so any buffer calls to GL_ARRAY_BUFFER will configure VBO
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //copy the vertices into VBO on the graphics card, flag it as Static since the data is set once and used many times
+                                                                               //GL_DYNAMIC_DRAW would place it in memory that allows faster writes
+    //vertex shader
+    const char *vertexShaderSource = "#version 460 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "void main()\n"
+        "{\n"
+        "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+        "}\0";
+    //NOTE: Everything above this line is tutorial data that may not need to be in the final product
 
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
@@ -50,7 +67,7 @@ int main(int, char**)
         glfwSwapBuffers(window);
     }
 
-    std::cout << "Thanks for playing!" << std::endl;
+    std::cout << "Thanks for playing!!!" << std::endl;
     glfwTerminate();
     return 0;
 }
