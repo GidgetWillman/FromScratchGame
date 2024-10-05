@@ -1,0 +1,40 @@
+so we had things in the wrong order, I guess
+
+but it looks like the setup involves:
+1) compile and link the shaders ahead of the loop
+2) bind glBindVertexArray(VAO)
+3) copy vertices array into glBindBuffer(VBO)
+4) bind and copy indices array into glBindBuffer(EBO)
+5) ENTER RENDERING LOOP
+6) call glUseProgram
+7) call glBindVertexArray(VAO)
+8) call glDrawElements (or glDrawArrays)
+
+VAO = Vertex Array Object
+VBO = Vertex Buffer Object
+EBO = Element Buffer Object (element array buffer)
+
+Of note, we can make VBO and VAO arrays
+when drawing, we just have to specify which entry we're using
+
+so basically we're declaring the shader to draw with
+then declaring what to draw
+then drawing it
+
+as long as the EBO is set up after VAO and VBO, it should work
+
+glDrawArrays(GLenum mode, 
+    GLint first, 
+    GLsizei count);
+
+mode declares how to interpret and draw
+first marks the starting index in the array
+count specifies how many vertices to render
+
+of note, on obj files:
+v lines are vertices
+vn lines are vertex normals
+vt lines are texture coordinates
+s lines indicate smooth shading
+f lines indicate face indices by vertex/texture/normal
+(v1/vt1/vn1 v2/vt2/vn2 v3/vt3/vn3)
