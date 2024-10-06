@@ -21,6 +21,8 @@ so basically we're declaring the shader to draw with
 then declaring what to draw
 then drawing it
 
+
+
 as long as the EBO is set up after VAO and VBO, it should work
 
 glDrawArrays(GLenum mode, 
@@ -64,5 +66,3 @@ shaders go vertex -> fragment (geometry in between but we're not worried about t
 
 uniform variables are global and can be accessed anywhere
 they will remain until reset or updated
-
-Rein'a is stinky
