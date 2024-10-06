@@ -66,3 +66,7 @@ shaders go vertex -> fragment (geometry in between but we're not worried about t
 
 uniform variables are global and can be accessed anywhere
 they will remain until reset or updated
+
+someStackObject.Function();
+someHeapObject->Function();
+remember the heap pointer literally points to the function

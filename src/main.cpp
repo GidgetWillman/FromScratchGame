@@ -48,8 +48,8 @@ int main()
         return -1;
     }
 
-    //build our shader
-    Shader tutorialShader("../shaders/tutorialshader.vert", "../shaders/tutorialshader.frag");
+    //build our shader HEAP ALLOCATED
+    Shader* tutorialShader = new Shader("../shaders/tutorialshader.vert", "../shaders/tutorialshader.frag");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -82,7 +82,7 @@ int main()
     // glBindVertexArray(0);
 
     // as we only have a single shader, we could also just activate our shader once beforehand if we want to 
-    tutorialShader.use();
+    tutorialShader->use();
 
     // render loop
     // -----------
@@ -111,6 +111,8 @@ int main()
     // ------------------------------------------------------------------------
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+
+    delete tutorialShader;
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
