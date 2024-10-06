@@ -14,7 +14,7 @@ class Shader
         unsigned int ID;
 
         //constructor reads and builds the shader
-        Shader(const char* vertexPath, const char* fragmentPath)
+        Shader(const char* vertexPath, const char* fragmentPath) //constructor requires the filepaths
         {
             //1) retrieve the vertex/fragment source code from filepath
             std::string vertexCode;
