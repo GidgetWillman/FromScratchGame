@@ -70,3 +70,56 @@ they will remain until reset or updated
 someStackObject.Function();
 someHeapObject->Function();
 remember the heap pointer literally points to the function
+
+VECTOR MATH
+
+Scalar vector operations:
+-essentially just scaling a vector by multiplying/adding/subtracting
+-the simplest, most straightforward vector math, 
+    just add/sub/multiply/divide x from everything
+
+Vector negation:
+-just multiply the bitch by -1 and it goes in the other direction
+
+Vector addition and subtraction
+-just add the matching bits.  vec3 + vec3 is the same as vec3.a + vec3.a, 
+    vec3.b + vec3.b, and so on.
+-Just remember it's basically x+x and y+y and z+z and you're fine
+
+Vector length:
+-pythagorean theorem.  Even in 3D, it's apparently the same.
+-add x^2 + y^2 + z^2 and take the square root of the result and that's your length
+
+Dot product:
+-dot product is equal to scalar multiplication of their lengths times the
+    cosine of the angle between them.
+-apparently we calculate the dot product by multiplying the components 
+    (x*x, y*y, z*z) and adding up the results.
+-we can get an angle from this by inverse cosine.
+
+Cross product:
+-defined only in 3D space.  Takes two non-parallel vectors and produces a third
+    vector that is orthogonal to both inputs. (it'll be at a 90 degree angle from each)
+-hokay this one's complicated.  Basically...
+-looks like we multiply each component by the next component
+-then multiply by the previous component
+-then subtract the results... idk I'll take a screenshot on the learning channel
+    in Discord just look there holy shit
+
+MATRICES!!!
+-indexed by (i,j) where i is the row and j is the column
+-obvious, but of note: opposite of typical graphics coordinates
+-(2, 1) would retrieve the second row, first column
+
+Matrix additon/subtraction:
+-per element, just like vectors
+-only works on matrices of the same dimension
+
+Matrix scalar:
+-same as with vectors. if the question is Matrix[]*2, just multiply every matrix
+    element by 2 and there's the result.
+
+Matrix multiplication:
+-two matrices can only be multiplied if matrix A has the same number of columns as
+    matrix B, and is not commutative (A*B != B*A)
+-specifically the book says the left matrix and right matrix instead of A and B
