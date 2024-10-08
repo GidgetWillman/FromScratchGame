@@ -89,6 +89,9 @@ Vector addition and subtraction
 Vector length:
 -pythagorean theorem.  Even in 3D, it's apparently the same.
 -add x^2 + y^2 + z^2 and take the square root of the result and that's your length
+-of important note... if the vector doesn't originate from a (0,0,0) position,
+    then an origin point is needed to subtract from the vector as part of getting
+    the length.
 
 Dot product:
 -dot product is equal to scalar multiplication of their lengths times the
@@ -96,6 +99,9 @@ Dot product:
 -apparently we calculate the dot product by multiplying the components 
     (x*x, y*y, z*z) and adding up the results.
 -we can get an angle from this by inverse cosine.
+-THIS IS USEFUL IF WE WANT TO FIND ANGLES BETWEEN FACES
+-Also useful in determining if two characters are facing the same way, I guess
+-THIS IS EXCEPTIONALLY USEFUL FOR PHONG SHADING
 
 Cross product:
 -defined only in 3D space.  Takes two non-parallel vectors and produces a third
@@ -105,6 +111,7 @@ Cross product:
 -then multiply by the previous component
 -then subtract the results... idk I'll take a screenshot on the learning channel
     in Discord just look there holy shit
+-THIS IS USEFUL FOR FINDING SURFACE NORMALS
 
 MATRICES!!!
 -indexed by (i,j) where i is the row and j is the column
@@ -121,5 +128,44 @@ Matrix scalar:
 
 Matrix multiplication:
 -two matrices can only be multiplied if matrix A has the same number of columns as
-    matrix B, and is not commutative (A*B != B*A)
+    matrix B has rows, and is not commutative (A*B != B*A)
 -specifically the book says the left matrix and right matrix instead of A and B
+-as I understand it... you take a row from the left and column from the right
+-A1, A2, and A3 will represent the row from the left
+-B1, B2, and B3 will represent the column from the right
+-multiply A1, A2, A3 by B1, B2, B3 respectively and add the results
+-the result gets placed at the intersection of where the row and column would be
+-so if you're multiplying row 2 with column 3, the result would get placed in
+    position (2, 3)
+
+-OpenGL usually uses 4x4 transformation matrices, mostly because most vectors
+    are of size 4.  A 4x4 matrix has 4 columns, a vec4 could be said to have
+    4 rows, therefore matrix-vector multiplication is doable!
+
+Identity matrix:
+-A matrix of all zeroes, except the diagonals are all 1s.
+-multiplying a vector by an identity matrix leaves it unchanged.
+-Not useful by itself, but helpful as a concept and helps build other transformation matrices.
+
+Non-uniform scale:
+-just vector multiplication.  multiply (2, 2, 0) by (0.5, 2, 1) and you get (1, 4, 0)
+-we're just scaling X by .5 and Y by 2.
+
+Matrix scaling:
+-replace all the 1s in the identity matrix with 3s and suddenly we're tripling
+    the length of the vector.
+
+Translation:
+-with a translation vector (Tx, Ty, Tz), add them to the 4th matrix column:
+    [1, 0, 0, Tx]
+    [0, 1, 0, Ty]
+    [0, 0, 1, Tz]
+    [0, 0, 0, 1 ]
+-This allows translation so we can move a given object.
+
+Homogenous coordinate:
+-4th item (x, y, z, W) is a homogenous coordinate.
+-divide the other coordinates by w to get a homogenous vector.
+-usually it's 1, and exists to allow transformation matrices to exist
+-Later it'll be used to create 3D perspective
+
