@@ -169,3 +169,15 @@ Homogenous coordinate:
 -usually it's 1, and exists to allow transformation matrices to exist
 -Later it'll be used to create 3D perspective
 
+Rotation:
+-most rotation functions are usually in radians (360 degrees = 2*pi radians)
+-degrees from radians = angle in radians * (180/PI)
+-radians from degrees = angle in degrees * (PI/180)
+-PI equals (rounded) 3.14159265359 (just in case we need to know)
+-refer to Discord for rotation matrices
+-quaternions are good, might learn about 'em later
+-GLM Header wants Radians for its rotation angles
+
+Combining matrices:
+-just multiply the matrices together to apply multiple transformations
+-remember that the left matrix happens first, then the right matrix

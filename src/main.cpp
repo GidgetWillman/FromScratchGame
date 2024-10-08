@@ -4,6 +4,9 @@
 #include <cmath>
 #include <shader.h>
 #include <image.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 // settings
 const unsigned int SCR_WIDTH = 1600;
@@ -22,6 +25,12 @@ void processInput(GLFWwindow *window)
 
 int main()
 {
+    glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f); //define GLM vector at (1, 0, 0)
+    glm::mat4 trans = glm::mat4(1.0f); //initialize identity matrix
+    trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f)); //pass identity matrix to glm translate function
+    vec = trans * vec; //multiply the vector by the translation matrix 
+    std::cout << vec.x <<"," << vec.y << "," << vec.z << std::endl;
+
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
