@@ -181,3 +181,41 @@ Rotation:
 Combining matrices:
 -just multiply the matrices together to apply multiple transformations
 -remember that the left matrix happens first, then the right matrix
+
+Coordinate systems:
+-Before transforming to screen space, the 'world' goes through several spaces
+-this is to work the scene into the camera, and apply transforms that are easier
+    to complete or more appropriate at certain space tiers
+-the order goes:
+    Local space -> Model Matrix ->
+    World space -> View Matrix ->
+    View Space -> Projection Matrix ->
+    Clip Space -> final viewport transform (not a matrix) ->
+    Screen Space -> pretty picture :D
+-Everything starts in local space
+-personal note: world space origin will basically be the local origin of the level
+-The viewing box the camera can see inside of is called the 'frustum'
+-Orthographic projection matrix generation:
+    glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+    -arguments are left and right frustum coordinate, bottom and top frustum
+        coordinate, then near plane and far plane distance.
+-Perspective projection increases W by distance from the camera, then divides
+    the normalized coordinates by w to create perspective
+-Perspective projection matrix generation:
+    glm::mat4 proj = 
+        glm::perspective(glm::radians(45.0f), (float)width/(float)height, 0.1f, 100.0f);
+    -first parameter is FOV angle, second parameter is aspect ratio, third and 
+        fourth are near and far planes
+
+Clip plane projection:
+-clip plane = projectionMatrix * viewMatrix * modelMatrix * localMatrix
+-remember these are not commutative and that's the order
+-I guess we read matrix multiplication from right to left?
+-idk anymore just read it right to left and if something fucks up,
+    just reverse the order and see if that helps.
+
+Going 3D:
+-remember that moving the camera backward is the same as moving the whole scene
+    forward (could change later lmao)
+-OpenGL uses a right handed coordinate system
+    +Y is up, +Z is toward the camera, +X is to the right
