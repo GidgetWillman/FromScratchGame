@@ -218,4 +218,16 @@ Going 3D:
 -remember that moving the camera backward is the same as moving the whole scene
     forward (could change later lmao)
 -OpenGL uses a right handed coordinate system
-    +Y is up, +Z is toward the camera, +X is to the right
+    +Y is up, +Z is south, +X is east
+             (-Z is north, -X is west)
+
+Camera:
+-Camera is constructed with position, direction, right, up
+-for posterity:
+    //Camera tutorial setup
+    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f); //base camera position
+    glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f); //where the camera is looking
+    glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget); //camera Z vector points away from target
+    glm::vec3 globalUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 cameraRight = glm::normalize(glm::cross(globalUp, cameraDirection)); //cross product points right
+    glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight); //make a Y axis vector for the camera
