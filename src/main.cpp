@@ -13,6 +13,50 @@ glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 float deltaTime = 0.0f; //time since the last frame
 float lastFrame = 0.0f;
 
+//initialize camera settings
+float yaw = -90.0f;
+float pitch = 0.0f;
+
+//mouse things
+float lastx = 400, lasty = 300;
+bool firstMouse = true;
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (firstMouse)
+    {
+        lastx = xpos;
+        lasty = ypos;
+        firstMouse = false;
+    }
+    
+    float xoffset = xpos - lastx;
+    float yoffset = lasty - ypos; //reversed since y coordinates range bottom to top
+    lastx = xpos;
+    lasty = ypos;
+
+    float sensitivity = 0.1f;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    yaw += xoffset;
+    pitch += yoffset;
+    
+    if(pitch > 89.0f)
+        pitch = 89.0f;
+    if(pitch < -89.0f)
+        pitch = -89.0f;
+    
+    //create a camera direction vector
+    glm::vec3 direction;
+    direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    direction.y = sin(glm::radians(pitch));
+    direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(direction);
+
+    std::cout << yaw << ", " << pitch << std::endl;
+}
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) //resize the viewport if the user resizes the window
 {
     glViewport(0, 0, width, height);
@@ -66,6 +110,10 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+    //prevent the mouse from leaving the window and render it invisible
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetCursorPosCallback(window, mouse_callback);
 
     // build and compile our shader zprogram
     // ------------------------------------
@@ -290,7 +338,6 @@ int main()
         glfwPollEvents();
 
         glm::vec3 benis = cameraPos;
-        std::cout << benis.x << ", " << benis.y << ", " << benis.z << std::endl;
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
